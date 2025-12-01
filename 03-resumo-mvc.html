@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVC, SOFEA e REST: A Tríade da Arquitetura Moderna</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #ecf0f1; /* Cor de texto clara */
+            background-color: #2c3e50; /* Fundo escuro (Dark Blue Gray) */
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 25px;
+            border-radius: 8px;
+        }
+        h1 {
+            color: #3498db; /* Azul vibrante */
+            border-bottom: 4px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 20px;
+        }
+        h2 {
+            color: #1abc9c; /* Verde água */
+            margin-top: 30px;
+            border-bottom: 2px solid #1abc9c;
+            padding-bottom: 5px;
+        }
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        .analogy {
+            background-color: #34495e; /* Cinza azulado escuro */
+            padding: 15px;
+            border-left: 5px solid #e67e22; /* Laranja */
+            margin: 20px 0;
+            font-style: italic;
+            border-radius: 4px;
+        }
+        .key-concept {
+            font-weight: bold;
+            color: #f1c40f; /* Amarelo */
+        }
+        .pager{display:flex;justify-content:space-between;margin:18px 0}
+        .pager-btn{background:#3498db;color:#fff;padding:10px 14px;border-radius:6px;text-decoration:none;font-weight:600}
+        .pager-btn.disabled{opacity:.45;pointer-events:none;background:#7f8c8d}
+    </style>
+</head>
+<body>
+
+    <nav class="pager">
+        <a class="pager-btn prev" href="resumo-rest.html">← Anterior</a>
+        <a class="pager-btn next" href="resumo-mvc-2.html">Próximo →</a>
+    </nav>
+
+    <h1>🧠 Modelo-Visão-Controle (MVC): A Organização Interna do Software</h1>
+
+    <p>O <strong>Modelo-Visão-Controle (MVC)</strong> é um dos padrões de design de software mais importantes, surgido para ajudar a organizar o código de aplicações que possuem interfaces de usuário. Ele resolve o problema de misturar a lógica de negócio (como calcular impostos ou salvar um registro no banco de dados) com a lógica de apresentação (como desenhar botões ou formatar um texto na tela). A ideia principal é a <strong>separação de interesses</strong>, dividindo a aplicação em três componentes interligados, cada um com uma responsabilidade clara e isolada. Ao manter o código desacoplado dessa forma, tornamos a manutenção, a evolução de funcionalidades e, crucialmente, a escrita de testes unitários muito mais simples e eficaz. O MVC é um padrão que reside <span class="key-concept">dentro</span> da arquitetura, organizando os arquivos e as classes, e não o padrão de comunicação entre sistemas.</p>
+
+    <h2>1. 🏛️ Os Três Pilares do MVC</h2>
+    
+    <p>O fluxo MVC funciona como uma linha de montagem, garantindo que as responsabilidades nunca se misturem:</p>
+
+    <h3>➡️ <strong>Controlador (Controller)</strong></h3>
+    <p>É o <strong>ponto de entrada</strong> da aplicação. O Controlador recebe as requisições do usuário (o clique em um botão, a submissão de um formulário ou uma chamada HTTP), interpreta a intenção e decide qual ação tomar. Ele <strong>não</strong> implementa a lógica de negócio; ele apenas coordena o fluxo, chamando o Modelo e selecionando a Visão. Em um cenário de API, o Controller é o componente que mapeia a URL (ex: <code>/produtos/1</code>) e o verbo HTTP (GET) para uma função específica, sendo o elo entre o mundo externo e a lógica interna do software.</p>
+    
+    <div class="analogy">
+        <strong>Analogia: O Maestro da Orquestra 🎻</strong>
+        <p>O Controlador é o <span class="key-concept">Maestro</span>. Ele não toca nenhum instrumento (não tem a lógica de negócio), mas ele recebe o pedido da plateia (requisição HTTP) e <strong>diz a cada músico (Modelo e Visão) quando tocar e o quê</strong>. Ele garante que a ordem e a harmonia sejam mantidas.</p>
+    </div>
+
+    <nav class="pager">
+        <a class="pager-btn prev" href="resumo-rest.html">← Anterior</a>
+        <a class="pager-btn next" href="resumo-mvc-2.html">Próximo →</a>
+    </nav>
+
+    <h3>➡️ <strong>Modelo (Model)</strong></h3>
+    <p>O Modelo é o <strong>coração da lógica de negócio</strong> e a representação dos dados. Ele lida com a leitura, escrita e manipulação de informações (seja em um banco de dados, em arquivos ou em sistemas externos). Sempre que você precisar aplicar uma regra de negócio complexa (calcular frete, validar senha, descontar estoque), essa lógica pertence ao Modelo. O Modelo é <strong>independente</strong> da Visão e do Controlador; ele não sabe se os dados serão exibidos em um site, em um app ou em uma API. Ele apenas garante que os dados estejam corretos e a lógica seja aplicada.</p>
+
+    <div class="analogy">
+        <strong>Analogia: O Gerente de Banco de Dados 💾</strong>
+        <p>O Modelo é o <span class="key-concept">Gerente de Banco de Dados</span>. Ele cuida do dinheiro (os dados). Ele sabe a regra para depositar (lógica de inserção), sacar (lógica de exclusão) e verificar o saldo (lógica de consulta). O Controlador apenas pede a ele: "Gerente, por favor, saque R$ 100", e o Modelo executa essa tarefa e retorna o resultado.</p>
+    </div>
+
+    <h3>➡️ <strong>Visão (View)</strong></h3>
+    <p>A Visão é a <strong>camada de apresentação</strong>; ela é responsável por renderizar a interface do usuário. Sua única função é receber os dados formatados do Controlador (ou, em alguns padrões, diretamente do Modelo) e exibi-los da forma que o usuário final deve ver. Em aplicações web tradicionais, a Visão gera o HTML final. Em arquiteturas mais modernas como as que usam APIs, a Visão pode ser apenas o template que formata os dados brutos (JSON) em uma estrutura de resposta final, embora esse papel seja muitas vezes abstraído por frameworks.</p>
+    
+    <div class="analogy">
+        <strong>Analogia: O Designer de Interiores 🛋️</strong>
+        <p>A Visão é o <span class="key-concept">Designer de Interiores</span>. Ela pega a informação pura (o "cimento e o tijolo" que vem do Modelo) e aplica cores, fontes e layouts para que o resultado seja bonito e utilizável pelo cliente. Ela não tem ideia de como os dados foram calculados, apenas como devem ser mostrados.</p>
+    </div>
+
+    <h2>2. 융 A Conexão: MVC, REST e SOFEA na Prática</h2>
+
+    <p>A beleza da arquitetura moderna reside em como esses três conceitos coexistem: <strong>SOFEA</strong> dita a <strong>separação</strong>, <strong>REST</strong> dita a <strong>comunicação</strong>, e <strong>MVC</strong> dita a <strong>organização interna</strong>. Pense no seu sistema dividido em duas grandes áreas graças ao SOFEA: o Front-End e o Back-End. No Back-End, o MVC entra em ação para estruturar o código do seu serviço RESTful. Quando um cliente (o Front-End ou Postman) envia uma requisição <strong>REST</strong> (ex: <code>POST /produtos</code>), o fluxo é o seguinte: a requisição HTTP chega ao <strong>Controlador</strong> (C); o Controlador chama o <strong>Modelo</strong> (M) para realizar a lógica de negócio (salvar no banco de dados); o Modelo retorna o resultado; e o Controlador, por

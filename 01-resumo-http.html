@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumo: Protocolos HTTP e Códigos de Status</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+            margin-top: 25px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .code-block {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            margin: 15px 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+        }
+        .note {
+            background-color: #e8f8f5;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #1abc9c;
+            margin: 15px 0;
+        }
+        .pager{display:flex;justify-content:space-between;margin:18px 0}
+        .pager-btn{background:#3498db;color:#fff;padding:10px 14px;border-radius:6px;text-decoration:none;font-weight:600}
+        .pager-btn.disabled{opacity:.45;pointer-events:none;background:#7f8c8d}
+    </style>
+</head>
+<body>
+
+    <nav class="pager">
+        <a class="pager-btn prev" href="resumo-intro.html">← Anterior</a>
+        <a class="pager-btn next" href="resumo-rest.html">Próximo →</a>
+    </nav>
+
+    <h1>🌐 Protocolo HTTP e Códigos de Status</h1>
+    
+    <p>O <strong>Hypertext Transfer Protocol (HTTP)</strong> é o protocolo fundamental para a comunicação web no modelo cliente-servidor. O cliente envia uma <strong>requisição</strong> e o servidor retorna uma <strong>resposta</strong>. O elemento mais importante dessa resposta é o <strong>Código de Status HTTP</strong>, um número de três dígitos que comunica o resultado da operação.</p>
+
+    <hr>
+
+    <h2>🔑 Classes dos Códigos de Status HTTP</h2>
+    
+    <p>Todo código de status HTTP é dividido em cinco classes (centenas), indicando a natureza do resultado:</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Classe</th>
+                <th>Range</th>
+                <th>Significado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>1xx</strong></td>
+                <td>100–199</td>
+                <td><strong>Informativa:</strong> A requisição foi recebida e o processo continua.</td>
+            </tr>
+            <tr>
+                <td><strong>2xx</strong></td>
+                <td>200–299</td>
+                <td><strong>Sucesso:</strong> A ação foi recebida, compreendida e aceita com sucesso.</td>
+            </tr>
+            <tr>
+                <td><strong>3xx</strong></td>
+                <td>300–399</td>
+                <td><strong>Redirecionamento:</strong> É necessária uma ação adicional para completar a requisição.</td>
+            </tr>
+            <tr>
+                <td><strong>4xx</strong></td>
+                <td>400–499</td>
+                <td><strong>Erro do Cliente:</strong> A requisição contém sintaxe incorreta ou não pode ser satisfeita (o erro é do lado do cliente).</td>
+            </tr>
+            <tr>
+                <td><strong>5xx</strong></td>
+                <td>500–599</td>
+                <td><strong>Erro do Servidor:</strong> O servidor falhou ao cumprir uma requisição aparentemente válida (o erro é do lado do servidor).</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <nav class="pager">
+        <a class="pager-btn prev" href="resumo-intro.html">← Anterior</a>
+        <a class="pager-btn next" href="resumo-rest.html">Próximo →</a>
+    </nav>
+
+    <hr>
+
+    <h2>🌟 Códigos Essenciais para APIs</h2>
+
+    <h3>2xx: Sucesso (Successful)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nome</th>
+                <th>Uso Típico</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>200</strong></td>
+                <td><strong>OK</strong></td>
+                <td>Padrão de sucesso para métodos <strong>GET</strong>, <strong>PUT</strong> e <strong>DELETE</strong>. A resposta contém o recurso.</td>
+            </tr>
+            <tr>
+                <td><strong>201</strong></td>
+                <td><strong>Created</strong></td>
+                <td>A requisição foi bem-sucedida e <strong>resultou na criação de um novo recurso</strong>. Típica resposta para métodos <strong>POST</strong>.</td>
+            </tr>
+            <tr>
+                <td><strong>204</strong></td>
+                <td><strong>No Content</strong></td>
+                <td>A requisição foi bem-sucedida, mas <strong>não há conteúdo para retornar</strong>. Típica resposta para <strong>DELETE</strong> ou <strong>PUT</strong> que não retornam o recurso.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>4xx: Erros do Cliente (Client Errors)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nome</th>
+                <th>Uso Típico</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>400</strong></td>
+                <td><strong>Bad Request</strong></td>
+                <td>Sintaxe inválida ou dados incorretos na requisição (ex: JSON mal formado, campos obrigatórios faltando).</td>
+            </tr>
+            <tr>
+                <td><strong>401</strong></td>
+                <td><strong>Unauthorized</strong></td>
+                <td>Falha na autenticação. O cliente não forneceu <strong>credenciais válidas</strong> (*token* ausente ou expirado).</td>
+            </tr>
+            <tr>
+                <td><strong>403</strong></td>
+                <td><strong>Forbidden</strong></td>
+                <td>O cliente está autenticado, mas <strong>não tem permissão</strong> para acessar o recurso solicitado (erro de autorização).</td>
+            </tr>
+            <tr>
+                <td><strong>404</strong></td>
+                <td><strong>Not Found</strong></td>
+                <td>O recurso solicitado <strong>não existe</strong> no servidor.</td>
+            </tr>
+            <tr>
+                <td><strong>422</strong></td>
+                <td><strong>Unprocessable Entity</strong></td>
+                <td>Requerimento bem formado, mas com <strong>erros de regra de negócio</strong> (ex: e-mail já cadastrado).</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>5xx: Erros do Servidor (Server Errors)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nome</th>
+                <th>Uso Típico</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>500</strong></td>
+                <td><strong>Internal Server Error</strong></td>
+                <td>Um erro genérico e inesperado no código do servidor (exceção não tratada).</td>
+            </tr>
+            <tr>
+                <td><strong>503</strong></td>
+                <td><strong>Service Unavailable</strong></td>
+                <td>O servidor não pode lidar com a requisição no momento (ex: sobrecarga, manutenção).</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h2>🛠️ Sugestão para Testar com Postman (NestJS/TypeScript)</h2>
+    
+    <p>Em NestJS, você usa o decorador <code>@HttpCode()</code> ou exceções internas (como <code>NotFoundException</code>) para controlar o código de status.</p>
+
+    <h3>Exemplo de Código (Controller)</h3>
+    <div class="code-block">
+        &lt;!-- user.controller.ts --&gt;<br>
+        import { Controller, Post, Body, HttpCode, HttpStatus, Get, Param, Delete, NotFoundException } from '@nestjs/common';<br>
+        <br>
+        @Controller('users')<br>
+        export class UsersController {<br>
+        &nbsp;&nbsp;// POST para criar -> 201 Created<br>
+        &nbsp;&nbsp;@Post()<br>
+        &nbsp;&nbsp;@HttpCode(HttpStatus.CREATED)<br>
+        &nbsp;&nbsp;create(@Body() createUserDto: any) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;return { id: 1, name: createUserDto.name };<br>
+        &nbsp;&nbsp;}<br>
+        <br>
+        &nbsp;&nbsp;// GET para buscar -> 200 OK ou 404 Not Found<br>
+        &nbsp;&nbsp;@Get(':id')<br>
+        &nbsp;&nbsp;findOne(@Param('id') id: string) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;if (id === '999') {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// O NestJS mapeia esta exceção para 404 automaticamente<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw new NotFoundException(`User with ID ${id} not found.`);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;return { id: id, name: 'Alice' };<br>
+        &nbsp;&nbsp;}<br>
+        <br>
+        &nbsp;&nbsp;// DELETE para remover -> 204 No Content<br>
+        &nbsp;&nbsp;@Delete(':id')<br>
+        &nbsp;&nbsp;@HttpCode(HttpStatus.NO_CONTENT)<br>
+        &nbsp;&nbsp;remove(@Param('id') id: string) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;// Lógica de remoção...<br>
+        &nbsp;&nbsp;}<br>
+        }
+    </div>
+
+    <h3>Teste no Postman</h3>
+    <p>Use o Postman para disparar as requisições e verificar se o código de status retornado (na seção "Status") corresponde ao esperado:</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Cenário</th>
+                <th>Método</th>
+                <th>URL de Exemplo</th>
+                <th>Código de Status Esperado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Criação</td>
+                <td><code>POST</code></td>
+                <td><code>http://localhost:3000/users</code></td>
+                <td><strong>201 Created</strong></td>
+            </tr>
+            <tr>
+                <td>Busca (Sucesso)</td>
+                <td><code>GET</code></td>
+                <td><code>http://localhost:3000/users/1</code></td>
+                <td><strong>200 OK</strong></td>
+            </tr>
+            <tr>
+                <td>Busca (Erro)</td>
+                <td><code>GET</code></td>
+                <td><code>http://localhost:3000/users/999</code></td>
+                <td><strong>404 Not Found</strong></td>
+            </tr>
+            <tr>
+                <td>Remoção</td>
+                <td><code>DELETE</code></td>
+                <td><code>http://localhost:3000/users/1</code></td>
+                <td><strong>204 No Content</strong></td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
